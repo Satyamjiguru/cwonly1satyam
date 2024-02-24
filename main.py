@@ -49,7 +49,7 @@ json_data = {
         "email": "7488438311",
         "deviceToken": "e-vGpi82QmOcr0-twQikSD:APA91bFkMLCTwHnENgYIEvwyeOXsc0j7YXCkJleB76Swv2Z0-Bf6nb2sAAeCPk8lDz79RX_qv2jCQHFzrbOTiWg1lXa4r724v9NSqyP144Sk0Gqa-XLSPM7IQb31UfZzF7P5V0TLXIJU"
        }
-    headers = {
+headers = {
         "Host": "elearn.crwilladmin.com",
         "Token": "",
         "Usertype": "",
