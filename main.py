@@ -38,9 +38,9 @@ bc_url = (
 )
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
-url="https://elearn.crwilladmin.com/api/v5/login-other"
-
-data = {
+  url="https://elearn.crwilladmin.com/api/v5/login-other"
+  
+  data = {
         "deviceType": "android",
         "password": "Rohit@123",
         "deviceIMEI": "e5293270fce4cbd",
@@ -49,7 +49,7 @@ data = {
         "email": "7488438311",
         "deviceToken": "e-vGpi82QmOcr0-twQikSD:APA91bFkMLCTwHnENgYIEvwyeOXsc0j7YXCkJleB76Swv2Z0-Bf6nb2sAAeCPk8lDz79RX_qv2jCQHFzrbOTiWg1lXa4r724v9NSqyP144Sk0Gqa-XLSPM7IQb31UfZzF7P5V0TLXIJU"
        }
-headers = {
+  headers = {
         "Host": "elearn.crwilladmin.com",
         "Token": "",
         "Usertype": "",
@@ -64,7 +64,7 @@ headers = {
 
 @bot.on_message(filters.command(["login"]))
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text(
+  editable = await m.reply_text(
         "Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**"
     )
 
