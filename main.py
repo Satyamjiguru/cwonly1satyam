@@ -71,39 +71,48 @@ async def account_login(bot: Client, m: Message):
     input1: Message = await bot.listen(editable.chat.id)
     raw_text = input1.text
     data = {}
+  if "*" in raw_text:
     data["email"] = raw_text.split("*")[0]
     data["password"] = raw_text.split("*")[1]
     await input1.delete(True)
-
+    
     response = requests.post(url=url, headers=headers, json=data, verify=False)
-    data = response.json()
-    token = data["data"]["token"]
-    await editable.edit("**login Successful**")
+    if response.status_code == 200:
+       data = response.json()
+       token = data["data"]["token"]
+       await editable.edit("**login Successful**")
+       await m.reply_text(token)
+    else:
+       await m.reply_text("go back to response")
+    await m.reply_text(f"```{token}```")
+  else:  
+    token = raw_text
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
-    html1 = requests.get("https://elearn.crwilladmin.com/api/v5/my-batch").json()
-    b_data = html1.json()['data']['batchData']
+  url1 = s.get("https://elearn.crwilladmin.com/api/v5/my-batch?&token="+token).json()
+  b_data = html1.json()['data']['batchData']
 
-    cool=""
-    for data in b_data:
+  cool=""
+  for data in b_data:
         FFF="**BATCH-ID - BATCH NAME - INSTRUCTOR**"
         aa =f" ```{data['id']}```      - **{data['batchName']}**\n{data['instructorName']}\n\n"
         #aa=f"**Batch Name -** {data['batchName']}\n**Batch ID -** ```{data['id']}```\n**By -** {data['instructorName']}\n\n"
         if len(f'{cool}{aa}')>4096:
             await m.reply_text(aa)
             cool =""
-        cool+=aa
-    await editable.edit(f'{"**You have these batches :-**"}\n\n{FFF}\n\n{cool}')
+        cool +=aa
+  await m.reply(cool)  
+  await editable.edit(f'{"**You have these batches :-**"}\n\n{FFF}\n\n{cool}')
 
-    editable1= await m.reply_text("**Now send the Batch ID to Download**")
-    input2 = message = await bot.listen(editable.chat.id)
-    raw_text2 = input2.text
+  editable1= await m.reply_text("**Now send the Batch ID to Download**")
+  input2 = message = await bot.listen(editable.chat.id)
+  raw_text2 = input2.text
 
 # topic id url = https://elearn.crwilladmin.com/api/v5/comp/batch-topic/881?type=class&token=d76fce74c161a264cf66b972fd0bc820992fe576
-    url2 = requests.get("https://elearn.crwilladmin.com/api/v3/comp/batch-topic/"+raw_text2+"?type=class&token="+token)
-    topicid = url2.json()["data"]["batch_topic"]
-    bn =url2.json()["data"]["batch_detail"]["name"]
-#     await m.reply_text(f'Batch details of **{bn}** are :')
+  url2 = requests.get("https://elearn.crwilladmin.com/api/v3/comp/batch-topic/"+raw_text2+"?type=class&token="+token)
+  topicid = url2.json()["data"]["batch_topic"]
+  bn =url2.json()["data"]["batch_detail"]["name"]
+# await m.reply_text(f'Batch details of **{bn}** are :')
     vj=""
     for data in topicid:
         tids = (data["id"])
