@@ -60,7 +60,7 @@ async def account_login(bot: Client, m: Message):
     info["password"] = raw_text.split("*")[1]
     await input1.delete(True)
 
-    response = requests.post(url=url, headers=headers, json=json_data, verify=False)
+    response = requests.post(url=url, info=info, json=json_data, verify=False)
     data = response.json()
     token = data["data"]["token"]
     await editable.edit("**login Successful**")
