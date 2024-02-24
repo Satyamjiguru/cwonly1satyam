@@ -40,7 +40,7 @@ bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
 url="https://elearn.crwilladmin.com/api/v5/login-other"
 
-json_data = {
+data = {
         "deviceType": "android",
         "password": "Rohit@123",
         "deviceIMEI": "e5293270fce4cbd",
@@ -70,11 +70,11 @@ async def account_login(bot: Client, m: Message):
 
     input1: Message = await bot.listen(editable.chat.id)
     raw_text = input1.text
-    info["email"] = raw_text.split("*")[0]
-    info["password"] = raw_text.split("*")[1]
+    data["email"] = raw_text.split("*")[0]
+    data["password"] = raw_text.split("*")[1]
     await input1.delete(True)
 
-    response = requests.post(url=url, headers=headers, json=json_data, verify=False)
+    response = requests.post(url=url, headers=headers, json=data, verify=False)
     data = response.json()
     token = data["data"]["token"]
     await editable.edit("**login Successful**")
