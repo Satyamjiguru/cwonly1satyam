@@ -40,13 +40,27 @@ bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
 url="https://elearn.crwilladmin.com/api/v5/login-other"
 
-info= {
- "deviceType":"android",
-    "password":"",
-    "deviceModel":"Asus ASUS_X00TD",
-    "deviceVersion":"Pie(Android 9.0)",
-    "email":"",
-}
+json_data = {
+        "deviceType": "android",
+        "password": "Rohit@123",
+        "deviceIMEI": "e5293270fce4cbd",
+        "deviceModel": "Google sdk_gphone_x86",
+        "deviceVersion": "R(Android 11.0)",
+        "email": "7488438311",
+        "deviceToken": "e-vGpi82QmOcr0-twQikSD:APA91bFkMLCTwHnENgYIEvwyeOXsc0j7YXCkJleB76Swv2Z0-Bf6nb2sAAeCPk8lDz79RX_qv2jCQHFzrbOTiWg1lXa4r724v9NSqyP144Sk0Gqa-XLSPM7IQb31UfZzF7P5V0TLXIJU"
+       }
+    headers = {
+        "Host": "elearn.crwilladmin.com",
+        "Token": "",
+        "Usertype": "",
+        "Appver": "84",
+        "Apptype": "android",
+        "Content-Type": "application/json; charset=UTF-8",
+        "Content-Length": "352",
+        "Accept-Encoding": "gzip, deflate, br",
+        "user-agent": "okhttp/5.0.0-alpha.2",
+        'Connection': 'Keep-Alive'
+       }
 
 @bot.on_message(filters.command(["login"]))
 async def account_login(bot: Client, m: Message):
@@ -60,7 +74,7 @@ async def account_login(bot: Client, m: Message):
     info["password"] = raw_text.split("*")[1]
     await input1.delete(True)
 
-    response = requests.post(url=url, info=info, json=json_data, verify=False)
+    response = requests.post(url=url, headers=headers, json=json_data, verify=False)
     data = response.json()
     token = data["data"]["token"]
     await editable.edit("**login Successful**")
