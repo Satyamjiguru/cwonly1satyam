@@ -1,8 +1,31 @@
-import json
+import urllib
+import urllib.parse
 import requests
-import cloudscraper
-from pyrogram import Client, filters
+import json
+import subprocess
+from pyrogram.types.messages_and_media import message
+import helper
+from pyromod import listen
 from pyrogram.types import Message
+import tgcrypto
+import pyrogram
+from pyrogram import Client, filters
+from pyrogram.types.messages_and_media import message
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.errors import FloodWait
+import time
+from pyrogram.types import User, Message
+from p_bar import progress_bar
+from subprocess import getstatusoutput
+import logging
+import os
+import sys
+import re
+from pyrogram import Client as bot
+import cloudscraper
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import unpad
+from base64 import b64encode, b64decode
 
 ACCOUNT_ID = "6206459123001"
 BCOV_POLICY = "BCpkADawqM1VmXspFMod94-pT7xDCvmBEYt8U7f0mRB6XnG5huPE7I9qjhDW0qpx3LRyTD9WX7W6JvUGtgKN-qf1pJoZO-QXBMIykDivtAOgkJOmN-kyv4m_F0thrJ45z95hqWON0nsKBwvd"
@@ -16,11 +39,11 @@ async def account_login(bot: Client, m: Message):
     url = "https://elearn.crwilladmin.com/api/v5/login-other"
     data = {
         "deviceType": "android",
-        "password": "",
+        "password": "Rohit@123",
         "deviceIMEI": "08750aa91d7387ab",
         "deviceModel": "Realme RMX2001",
         "deviceVersion": "R(Android 11.0)",
-        "email": "",
+        "email": "7488438311",
         "deviceToken": "fYdfgaUaQZmYP7vV4r2rjr:APA91bFPn3Z4m_YS8kYQSthrueUh-lyfxLghL9ka-MT0m_4TRtlUu7cy90L8H6VbtWorg95Car6aU9zjA-59bZypta9GNNuAdUxTnIiGFxMCr2G3P4Gf054Kdgwje44XWzS9ZGa4iPZh"
     }
     headers = {
