@@ -40,11 +40,11 @@ async def account_login(bot: Client, m: Message):
     data = {
         "deviceType": "android",
         "password": "Rohit@123",
-        "deviceIMEI": "08750aa91d7387ab",
-        "deviceModel": "Realme RMX2001",
+        "deviceIMEI": "e5293270fce4cbd",
+        "deviceModel": "Google sdk_gphone_x86",
         "deviceVersion": "R(Android 11.0)",
         "email": "7488438311",
-        "deviceToken": "fYdfgaUaQZmYP7vV4r2rjr:APA91bFPn3Z4m_YS8kYQSthrueUh-lyfxLghL9ka-MT0m_4TRtlUu7cy90L8H6VbtWorg95Car6aU9zjA-59bZypta9GNNuAdUxTnIiGFxMCr2G3P4Gf054Kdgwje44XWzS9ZGa4iPZh"
+        "deviceToken": "e-vGpi82QmOcr0-twQikSD:APA91bFkMLCTwHnENgYIEvwyeOXsc0j7YXCkJleB76Swv2Z0-Bf6nb2sAAeCPk8lDz79RX_qv2jCQHFzrbOTiWg1lXa4r724v9NSqyP144Sk0Gqa-XLSPM7IQb31UfZzF7P5V0TLXIJU"
     }
     headers = {
         "Host": "elearn.crwilladmin.com",
