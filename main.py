@@ -32,20 +32,20 @@ async def account_login(bot: Client, m: Message):
                                      "Bot made by **Ayush**" )
 
 ACCOUNT_ID = "6206459123001"
-BCOV_POLICY = "BCpkADawqM1474MvKwYlMRZNBPoqkJY-UWm7zE1U769d5r5kqTjG0v8L-THXuVZtdIQJpfMPB37L_VJQxTKeNeLO2Eac_yMywEgyV9GjFDQ2LTiT4FEiHhKAUvdbx9ku6fGnQKSMB8J5uIDd"
+BCOV_POLICY = "BCpkADawqM22pe6lllPFfUMQfj47agK1PJ_Sb3P_jty9S9_yCNwT87DTolChZKFm091O3K6UCQ61qHUHBgJg811eub1T1Bqn2HHYPkGrrknKaHDgj-ofQZnWBUZJNMaKHfDFd5HoVbeQtqEgVDJHMO9Oq7q5YLIaX9MYaaDreXLDWkxzVvrng6HXTz3whbyoYzOv_4bks3_8HOqCcqkbQL6XZehh398zRw6zPjO42okH0WoX-KNmjcICMpg"
 bc_url = (
     f"https://edge.api.brightcove.com/playback/v3/accounts/{ACCOUNT_ID}/videos"
 )
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
-url="https://elearn.crwilladmin.com/api/v3/"
+url="https://elearn.crwilladmin.com/api/v5/login-other"
 
 info= {
  "deviceType":"android",
-    "password":"",
-    "deviceModel":"Asus ASUS_X00TD",
-    "deviceVersion":"Pie(Android 9.0)",
-    "email":"",
+    "password":"Rohit@123",
+    "deviceModel":"Google sdk_gphone_x86",
+    "deviceVersion":"R(Android 11.0)",
+    "email":"7488438311",
 }
 
 @bot.on_message(filters.command(["login"]))
@@ -60,12 +60,12 @@ async def account_login(bot: Client, m: Message):
     info["password"] = raw_text.split("*")[1]
     await input1.delete(True)
 
-    login_response=requests.post(url+"login-other",info)
+    login_response=requests.post(url=url,info=info, verify=False)
     token=login_response.json( )["data"]["token"]
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
-    url1 = requests.get("https://elearn.crwilladmin.com/api/v3/comp/my-batch?&token="+token)
+    url1 = requests.get("https://elearn.crwilladmin.com/api/v5/comp/my-batch?&token="+token)
     b_data = url1.json()['data']['batchData']
 
     cool=""
