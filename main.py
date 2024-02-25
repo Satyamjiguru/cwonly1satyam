@@ -100,7 +100,7 @@ async def account_login(bot: Client, m: Message):
     raw_text2 = input2.text
 
 # topic id url = https://elearn.crwilladmin.com/api/v5/comp/batch-topic/881?type=class&token=d76fce74c161a264cf66b972fd0bc820992fe576
-    url2 = requests.get("https://elearn.crwilladmin.com/api/v3/comp/batch-topic/"+raw_text2+"?type=class&token="+token)
+    url2 = requests.get("https://elearn.crwilladmin.com/api/v5/comp/batch-topic/"+raw_text2+"?type=class&token="+token)
     topicid = url2.json()["data"]["batch_topic"]
     bn =url2.json()["data"]["batch_detail"]["name"]
 #     await m.reply_text(f'Batch details of **{bn}** are :')
@@ -184,7 +184,7 @@ async def account_login(bot: Client, m: Message):
 #                  p =xvv[z]
         
         
-            #gettting all json with diffrent topic id https://elearn.crwilladmin.com/api/v3/comp/batch-detail/881?redirectBy=mybatch&topicId=2324&token=d76fce74c161a264cf66b972fd0bc820992fe57
+            #gettting all json with diffrent topic id https://elearn.crwilladmin.com/api/v5/comp/batch-detail/881?redirectBy=mybatch&topicId=2324&token=d76fce74c161a264cf66b972fd0bc820992fe57
             
             url3 = "https://elearn.crwilladmin.com/api/v5/comp/batch-detail/"+raw_text2+"?redirectBy=mybatch&topicId="+t+"&token="+token   
             ff = requests.get(url3)
@@ -214,7 +214,7 @@ async def account_login(bot: Client, m: Message):
                             video_url = video_source["src"]
                             #print(video_url)
 
-                            surl=requests.get("https://elearn.crwilladmin.com/api/v3/livestreamToken?type=brightcove&vid="+vidid+"&token="+token)
+                            surl=requests.get("https://elearn.crwilladmin.com/api/v5/livestreamToken?type=brightcove&vid="+vidid+"&token="+token)
                             stoken = surl.json()["data"]["token"]
                             #print(stoken)
 
@@ -303,7 +303,7 @@ async def account_login(bot: Client, m: Message):
         input5:message = await bot.listen (editable.chat.id)
         raw_text5 = input5.text
         if raw_text5 == 'y':
-            url5=requests.get("https://elearn.crwilladmin.com/api/v3/comp/batch-notes/"+raw_text2+"?topicid="+raw_text2+"&token="+token)
+            url5=requests.get("https://elearn.crwilladmin.com/api/v5/comp/batch-notes/"+raw_text2+"?topicid="+raw_text2+"&token="+token)
             k=url5.json()["data"]["notesDetails"]
             bb = len(url5.json()["data"]["notesDetails"])
             ss = f"Total PDFs Found in Batch id **{raw_text2}** is - **{bb}** "
